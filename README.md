@@ -29,29 +29,23 @@ npm run preview:cf   # Build + Wrangler local preview
    ```bash
    npx wrangler login
    ```
-3. Deploy:
+3. Deploy to the existing Cloudflare Pages project:
    ```bash
    npm run deploy
    ```
 
-### Connect petes-marine-service.com
+This uploads the Astro build to the existing **`petes-marine-service`** Pages project, replacing the old MkDocs site on both `petes-marine-service.com` and `petes-marine-service.pages.dev`.
 
-In Cloudflare Dashboard → **Workers & Pages** → your `petes-marine-service` worker:
+### CI/CD (GitHub Actions)
 
-1. **Settings** → **Domains & Routes** → **Add Custom Domain**
-2. Enter `petes-marine-service.com` and `www.petes-marine-service.com`
-3. Cloudflare will configure DNS automatically if the domain is on your account
+Add these repository secrets in GitHub → **Settings** → **Secrets**:
 
-This replaces the old MkDocs site at that domain once DNS routes to the new Worker.
+| Secret | Value |
+|--------|-------|
+| `CLOUDFLARE_API_TOKEN` | API token with **Cloudflare Pages Edit** permission |
+| `CLOUDFLARE_ACCOUNT_ID` | Your Cloudflare account ID |
 
-### CI/CD (optional)
-
-Connect the GitHub repo in **Workers & Pages** → **Create** → **Import repository**:
-
-| Setting | Value |
-|---------|-------|
-| Build command | `npm run build` |
-| Deploy command | `npx wrangler deploy` |
+Push to `master` — `.github/workflows/deploy-cloudflare.yml` builds and deploys automatically.
 
 ## Project structure
 
