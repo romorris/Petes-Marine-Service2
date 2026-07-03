@@ -1,0 +1,41 @@
+---
+const base = import.meta.env.BASE_URL;
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo-name" style="color:white">Pete's Marine Service</div>
+        <p>
+          Expert outboard repair, marine wiring, and full-service boat care
+          for Palm Beach Gardens and the surrounding ICW.
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href={`${base}#services`}>Engine Repair</a></li>
+          <li><a href={`${base}#services`}>Marine Wiring</a></li>
+          <li><a href={`${base}#services`}>Electronics</a></li>
+          <li><a href={`${base}#services`}>Boat Cleaning</a></li>
+          <li><a href={`${base}#services`}>Trailer Repair</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+19144951015">914-495-1015</a></li>
+          <li><a href="mailto:pete@petes-marine-service.com">pete@petes-marine-service.com</a></li>
+          <li><a href="https://maps.google.com/?q=Palm+Beach+Gardens,+FL" target="_blank" rel="noopener">Palm Beach Gardens, FL</a></li>
+          <li>Mon–Fri, 8AM–5PM</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; {year} Pete's Marine Service. All rights reserved.</span>
+      <a href={`${base}#contact`}>Get a quote</a>
+    </div>
+  </div>
+</footer>

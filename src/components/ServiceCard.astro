@@ -11,7 +11,9 @@ const { icon, title, description } = Astro.props;
 ---
 
 <article class="service-card">
-  <Icons name={icon} class="service-icon" />
+  <div class="service-icon-wrap">
+    <Icons name={icon} />
+  </div>
   <h3>{title}</h3>
   <p>{description}</p>
 </article>

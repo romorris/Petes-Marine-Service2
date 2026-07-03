@@ -56,6 +56,9 @@ const businessSchema = {
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
     <title>{title}</title>
 
     <meta property="og:type" content="website" />
@@ -75,8 +78,16 @@ const businessSchema = {
   <body>
     <slot />
     <script>
+      const header = document.getElementById('site-header');
       const toggle = document.querySelector('.menu-toggle');
       const nav = document.querySelector('.nav-links');
+
+      const onScroll = () => {
+        header?.classList.toggle('scrolled', window.scrollY > 40);
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+
       if (toggle && nav) {
         toggle.addEventListener('click', () => {
           const open = nav.classList.toggle('open');
@@ -86,9 +97,9 @@ const businessSchema = {
           link.addEventListener('click', () => nav.classList.remove('open'));
         });
       }
+
       if (new URLSearchParams(location.search).has('sent')) {
-        const el = document.querySelector('.form-success');
-        el?.classList.add('visible');
+        document.querySelector('.form-success')?.classList.add('visible');
         history.replaceState(null, '', location.pathname + '#contact');
       }
     </script>
