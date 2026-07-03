@@ -526,15 +526,10 @@ a {
   color: var(--text);
 }
 
-.about-features li::before {
-  content: '';
-  width: 20px;
-  height: 20px;
+.about-features li svg {
   flex-shrink: 0;
   margin-top: 2px;
-  background: var(--ocean);
-  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z'/%3E%3C/svg%3E") center/contain no-repeat;
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z'/%3E%3C/svg%3E") center/contain no-repeat;
+  color: var(--ocean);
 }
 
 .brands {
