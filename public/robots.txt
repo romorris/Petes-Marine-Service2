@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://romorris.github.io/Petes-Marine-Service2/sitemap-index.xml

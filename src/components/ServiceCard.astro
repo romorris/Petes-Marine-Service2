@@ -1,0 +1,17 @@
+---
+import Icons from './Icons.astro';
+
+interface Props {
+  icon: 'tools' | 'bolt' | 'chip' | 'sparkle' | 'trailer';
+  title: string;
+  description: string;
+}
+
+const { icon, title, description } = Astro.props;
+---
+
+<article class="service-card">
+  <Icons name={icon} class="service-icon" />
+  <h3>{title}</h3>
+  <p>{description}</p>
+</article>

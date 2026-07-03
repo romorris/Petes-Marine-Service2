@@ -1,7 +1,8 @@
 {
-  "name": "astro_site",
+  "name": "petes-marine-service",
   "type": "module",
-  "version": "0.0.1",
+  "version": "1.0.0",
+  "description": "Pete's Marine Service — boat repair website",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
@@ -9,6 +10,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.0",
     "astro": "^5.17.1"
   }
 }

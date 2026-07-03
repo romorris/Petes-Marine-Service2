@@ -1,0 +1,96 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Pete's Marine Service | Expert Boat Repair & Maintenance",
+  description = "Outboard engine repair, rebuilds, marine wiring, electronics, boat cleaning, and trailer service in Palm Beach Gardens, Florida. Yamaha, Mercury, Suzuki & more.",
+} = Astro.props;
+
+const site = Astro.site?.href.replace(/\/$/, '') ?? 'https://romorris.github.io';
+const base = import.meta.env.BASE_URL;
+const canonical = new URL(Astro.url.pathname, site + base).href;
+const ogImage = new URL(base + 'img/hero.webp', site).href;
+
+const businessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: "Pete's Marine Service",
+  description,
+  url: canonical,
+  telephone: '+1-914-495-1015',
+  email: 'pete@petes-marine-service.com',
+  image: ogImage,
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Palm Beach Gardens',
+    addressRegion: 'FL',
+    addressCountry: 'US',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 26.8234,
+    longitude: -80.1386,
+  },
+  openingHoursSpecification: [{
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+    opens: '08:00',
+    closes: '17:00',
+  }],
+  areaServed: 'Palm Beach County, FL',
+  priceRange: '$$',
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+    <title>{title}</title>
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="en_US" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(businessSchema)} />
+  </head>
+  <body>
+    <slot />
+    <script>
+      const toggle = document.querySelector('.menu-toggle');
+      const nav = document.querySelector('.nav-links');
+      if (toggle && nav) {
+        toggle.addEventListener('click', () => {
+          const open = nav.classList.toggle('open');
+          toggle.setAttribute('aria-expanded', String(open));
+        });
+        nav.querySelectorAll('a').forEach((link) => {
+          link.addEventListener('click', () => nav.classList.remove('open'));
+        });
+      }
+      if (new URLSearchParams(location.search).has('sent')) {
+        const el = document.querySelector('.form-success');
+        el?.classList.add('visible');
+        history.replaceState(null, '', location.pathname + '#contact');
+      }
+    </script>
+  </body>
+</html>
